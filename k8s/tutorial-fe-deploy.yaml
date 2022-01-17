@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tutorial-fe-deploy
+  labels:
+    name: tutorial-fe-deploy
+    app: tutorial-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: tutorial-fe-pod
+      app: tutorial-app
+    
+  template:
+    metadata:
+      name: tutorial-fe-pod
+      labels:
+        name: tutorial-fe-pod
+        app: tutorial-app
+    spec:
+      containers:
+        - name: tutorial-fe
+          image: kietara/tutorial-fe:0.0.1
+          ports:
+            - containerPort: 80
+          env:
+            - name: VUE_APP_ENPOINT_API_BACKEND
+              value: "http://20.195.17.123:8089/api"

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tutorial-fe-service
+  labels:
+    name: tutorial-fe-service
+    app: tutorial-app
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    name: tutorial-fe-pod
+    app: tutorial-app

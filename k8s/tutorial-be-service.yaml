@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tutorial-be-service
+  labels:
+    name: tutorial-be-service
+    app: tutorial-app
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8089
+      targetPort: 8089
+  selector:
+    name: tutorial-be-pod
+    app: tutorial-app

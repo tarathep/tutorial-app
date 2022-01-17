@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tutorial-be-deploy
+  labels:
+    name: tutorial-be-deploy
+    app: tutorial-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: tutorial-be-pod
+      app: tutorial-app
+    
+  template:
+    metadata:
+      name: tutorial-be-pod
+      labels:
+        name: tutorial-be-pod
+        app: tutorial-app
+    spec:
+      containers:
+        - name: tutorial-be
+          image: kietara/tutorial-be:0.0.1
+          ports:
+            - containerPort: 8089
+          env:
+            - name: MONGODB_CONNECTION_STRING
+              value: "mongodb://root:password@db:27017"

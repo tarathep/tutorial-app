@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+  labels:
+    name: mongodb-service
+    app: tutorial-app
+spec:
+  ports:
+    - port: 27017
+      targetPort: 27017
+  selector:
+    name: mongodb-pod
+    app: tutorial-app
